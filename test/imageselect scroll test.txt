@@ -1,0 +1,236 @@
+from PyQt4 import QtCore, QtGui
+from PyQt4.QtGui import *
+import mysql.connector
+from mysql.connector import *
+from mysql.connector import MySQLConnection,Error
+import sys
+
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    def _fromUtf8(s):
+        return s
+
+try:
+    _encoding = QtGui.QApplication.UnicodeUTF8
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+except AttributeError:
+    def _translate(context, text, disambig):
+        return QtGui.QApplication.translate(context, text, disambig)
+
+class Ui_imageselect(QMainWindow):
+    clicks = 0
+
+    def __init__(self):
+        QMainWindow.__init__(self)
+        self.setupUi(self)
+        self.currentbutton = 0
+        self.num = 4          ####                                   #get number of images ie 'num' from registration 2
+        self.status = []       ####                                  #list of click status of 12 buttons
+
+        for i in range(12):
+            self.status.append(False)
+
+
+
+    def setupUi(self, imageselect):
+        imageselect.setObjectName(_fromUtf8("imageselect"))
+        imageselect.resize(617, 363)
+        self.scrollArea = QtGui.QScrollArea(imageselect)
+        self.scrollArea.setGeometry(QtCore.QRect(0, 0, 617, 300))
+        self.scrollArea.setMinimumSize(QtCore.QSize(617, 0))
+        self.scrollArea.setMaximumSize(QtCore.QSize(617, 300))
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
+        self.scrollAreaWidgetContents = QtGui.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 598, 543))
+        self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
+        self.gridLayout_2 = QtGui.QGridLayout(self.scrollAreaWidgetContents)
+        self.gridLayout_2.setHorizontalSpacing(25)
+        self.gridLayout_2.setVerticalSpacing(15)
+        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
+        
+
+#********************************extracting 12 images from Database and saving them in a list**************************
+        self.imageList = []
+        try:
+             self.db=mysql.connector.connect(host="localhost", database="python_mysql",user="root",password="2864")
+             self.cursor=self.db.cursor()
+             for i in range(12):
+                self.cursor.execute("select * from image_data where img_id=%s",(i+1,))
+                rows=self.cursor.fetchone()
+                #print(rows[1])
+                self.imageList.append(rows[1])
+                #print(self.imageList[i])
+
+        except Error as e:
+             print(e)
+
+        finally:
+             self.cursor.close()
+             self.db.close()
+
+#****************************************************creating 12 icons for 12 push buttons****************************
+        iconList = []
+        for i in range(12):
+            iconList.append(QtGui.QIcon())
+            iconList[i].addPixmap(QtGui.QPixmap(_fromUtf8(self.imageList[i])), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+
+#****************************************************creating 12 push buttons*****************************************
+        self.imageButton = []
+        x=0
+        y=0
+        z=0
+        u=0
+        j=0
+        for i in range(12):
+            self.img = QtGui.QPushButton(self.scrollAreaWidgetContents)
+            if ((i==0) or (i==1) or (i==2)):
+                self.img.setGeometry(QtCore.QRect(10+x, 20, 170, 120))
+                x=x+185
+                self.gridLayout_2.addWidget(self.img, 0, i, 1, 1)
+            if ((i==3) or (i==4) or (i==5)):
+                self.img.setGeometry(QtCore.QRect(10+y, 150, 170, 120))
+                y=y+185
+                self.gridLayout_2.addWidget(self.img, 1, i-3, 1, 1)
+            if ((i==6) or (i==7) or (i==8)):
+                self.img.setGeometry(QtCore.QRect(10+z, 280, 170, 120))
+                z=z+185
+                self.gridLayout_2.addWidget(self.img, 2, i-6, 1, 1)
+            if ((i==9) or (i==10) or (i==11)):
+                self.img.setGeometry(QtCore.QRect(10+u, 410, 170, 120))
+                u=u+185
+                self.gridLayout_2.addWidget(self.img, 3, i-9, 1, 1)
+            self.img.setMinimumSize(QtCore.QSize(170, 120))
+            self.img.setMaximumSize(QtCore.QSize(170, 120))
+            self.img.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+            self.img.setText(_fromUtf8(""))
+            self.img.setIcon(iconList[i])
+            self.img.setIconSize(QtCore.QSize(180, 100))
+            self.img.setCheckable(True)
+            self.img.setFlat(True)
+            self.img.setObjectName(_fromUtf8("img1"))
+            self.gridLayout_2.addWidget(self.img, 0, 0, 1, 1)
+            self.imageButton.append(self.img)
+#----------------------------------------------------------------------------------------------------------------------#
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.open = QtGui.QPushButton(imageselect)
+        self.open.setGeometry(QtCore.QRect(390, 540, 101, 31))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        font.setWeight(75)
+        self.open.setFont(font)
+        self.open.setObjectName(_fromUtf8("open"))
+        self.verticalScrollBar = QtGui.QScrollBar(imageselect)
+        self.verticalScrollBar.setGeometry(QtCore.QRect(600, 0, 20, 591))
+        self.verticalScrollBar.setOrientation(QtCore.Qt.Vertical)
+        self.verticalScrollBar.setObjectName(_fromUtf8("verticalScrollBar"))
+        self.retranslateUi(imageselect)
+
+        self.open.clicked['bool'].connect(self.printstatus)
+
+        # for j in range(12):
+        #     print(j)
+        #     self.currentbutton = j
+        #     self.imageButton[j].clicked['bool'].connect(self.updateState)
+
+        self.imageButton[0].clicked['bool'].connect(self.updateStatus0)
+        self.imageButton[1].clicked['bool'].connect(self.updateStatus1)
+        self.imageButton[2].clicked['bool'].connect(self.updateStatus2)
+        self.imageButton[3].clicked['bool'].connect(self.updateStatus3)
+        self.imageButton[4].clicked['bool'].connect(self.updateStatus4)
+        self.imageButton[5].clicked['bool'].connect(self.updateStatus5)
+        self.imageButton[6].clicked['bool'].connect(self.updateStatus6)
+        self.imageButton[7].clicked['bool'].connect(self.updateStatus7)
+        self.imageButton[8].clicked['bool'].connect(self.updateStatus8)
+        self.imageButton[9].clicked['bool'].connect(self.updateStatus9)
+        self.imageButton[10].clicked['bool'].connect(self.updateStatus10)
+        self.imageButton[11].clicked['bool'].connect(self.updateStatus11)
+
+
+        QtCore.QMetaObject.connectSlotsByName(imageselect)
+
+#******************updateStatus changes the status of the button,true if clicked and false if double clicked************
+    def updateStatus0(self,stat):
+        self.status[0] = stat
+        self.check(stat)
+
+    def updateStatus1(self,stat):
+        self.status[1] = stat
+        self.check(stat)
+
+    def updateStatus2(self,stat):
+        self.status[2] = stat
+        self.check(stat)
+
+    def updateStatus3(self,stat):
+        self.status[3] = stat
+        self.check(stat)
+
+    def updateStatus4(self,stat):
+        self.status[4] = stat
+        self.check(stat)
+
+    def updateStatus5(self,stat):
+        self.status[5] = stat
+        self.check(stat)
+
+    def updateStatus6(self,stat):
+        self.status[6] = stat
+        self.check(stat)
+
+    def updateStatus7(self,stat):
+        self.status[7] = stat
+        self.check(stat)
+
+    def updateStatus8(self,stat):
+        self.status[8] = stat
+        self.check(stat)
+
+    def updateStatus9(self,stat):
+        self.status[9] = stat
+        self.check(stat)
+
+    def updateStatus10(self,stat):
+        self.status[10] = stat
+        self.check(stat)
+
+    def updateStatus11(self,stat):
+        self.status[11] = stat
+        self.check(stat)
+
+#*********check func increases 'clicks' if button is single clicked, decreases 'clicks' if button is double ckicked*****
+    def check(self,stat):
+        if stat==True:
+            self.clicks = self.clicks+1
+        else:
+            self.clicks = self.clicks-1
+        if self.clicks == self.num:
+            self.disableUnckecked(True)
+        else:
+            self.disableUnckecked(False)
+        #print(stat,self.clicks," ",end = " ")
+
+#*************************************if image limit is reached, disable unckecked images*******************************
+    def disableUnckecked(self,bl):
+        for k in range(12):
+            if self.status[k]==False:
+                self.imageButton[k].setDisabled(bl)
+
+    def retranslateUi(self, imageselect):
+        imageselect.setWindowTitle(_translate("imageselect", "Form", None))
+        self.open.setText(_translate("imageselect", "Open", None))
+
+    def printstatus(self):
+        print(self.status)
+
+
+if __name__ == '__main__':
+    app = QtGui.QApplication(sys.argv)
+    mainWindow = Ui_imageselect()
+    mainWindow.show()
+    sys.exit(app.exec())
+
