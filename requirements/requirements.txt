@@ -2,3 +2,4 @@ requirements
  - python 3.4
  - pycrypto 2.6.1
  - PyQt4 -(4.11.4)-gpl-Py3.4-Qt4.8.7-x32
+ - MySQL
