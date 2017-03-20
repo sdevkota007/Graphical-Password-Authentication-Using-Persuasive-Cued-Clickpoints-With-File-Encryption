@@ -15,15 +15,12 @@ user click-points.
 
 ### Application Screenshots
 
-[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/main%20window.JPG)
-[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/login.JPG)
-[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/registration%20(step%201%20of%202).JPG)
-[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/registration%20(step%202%20of%202).JPG)
-[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/image%20selection.JPG)
-[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/home.JPG)
+[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/main%20window.JPG)]
+[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/login.JPG)]
+[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/registration%20(step%201%20of%202).JPG)]
+[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/registration%20(step%202%20of%202).JPG)]
+[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/image%20selection.JPG)]
+[![html dark](https://github.com/sdevkota007/Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-With-File-Encryption/blob/master/screenshots/home.JPG)]
 
 
-### HTML (Vim)
 
-[![ALT dark](https://github.com/altercation/solarized/raw/master/img/screen-html-dark-th.png)](https://github.com/altercation/solarized/raw/master/img/screen-html-dark.png)
-[![html light](https://github.com/altercation/solarized/raw/master/img/screen-html-light-th.png)](https://github.com/altercation/solarized/raw/master/img/screen-html-light.png)
