@@ -1,4 +1,4 @@
-# Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-and-File-Encryption
+# Graphical-Password-Authentication-Using-Persuasive-Cued-Clickpoints-with-File-Encryption
 
 The basic foundation of the project is based on an IEEE paper: "Persuasive Cued Click-Points: Design, implementation, and
 evaluation of a knowledge-based authentication mechanism" published by Sonia Chiasson,Member, IEEE,Elizabeth Stobert, Alain
@@ -11,3 +11,14 @@ the user is asked to provide the username and correct graphical password. Upon s
 the database, the user is now able to encrypt/decrypt his files. The cryptographic algorithm used to provide security to the
 files is the AES encryption, where the 16-bit key for cipher is generated from the SHA-256 hashing algorithm implemented on the
 user click-points.
+
+
+### Java (Vim)
+
+[![java dark](https://github.com/altercation/solarized/raw/master/img/screen-java-dark-th.png)](https://github.com/altercation/solarized/raw/master/img/screen-java-dark.png)
+[![java light](https://github.com/altercation/solarized/raw/master/img/screen-java-light-th.png)](https://github.com/altercation/solarized/raw/master/img/screen-java-light.png)
+
+### Javascript (Vim)
+
+[![javascript dark](https://github.com/altercation/solarized/raw/master/img/screen-javascript-dark-th.png)](https://github.com/altercation/solarized/raw/master/img/screen-javascript-dark.png)
+[![javascript light](https://github.com/altercation/solarized/raw/master/img/screen-javascript-light-th.png)](https://github.com/altercation/solarized/raw/master/img/screen-javascript-light.png)
